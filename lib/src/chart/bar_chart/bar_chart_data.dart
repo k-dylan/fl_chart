@@ -551,10 +551,12 @@ class BackgroundBarChartRodData with EquatableMixin {
     double? toY,
     bool? show,
     Color? color,
+    EdgeInsets? padding,
     this.gradient,
   })  : fromY = fromY ?? 0,
         toY = toY ?? 0,
         show = show ?? false,
+        padding = padding ?? EdgeInsets.zero,
         color = color ??
             ((color == null && gradient == null) ? Colors.blueGrey : null);
 
@@ -576,6 +578,9 @@ class BackgroundBarChartRodData with EquatableMixin {
   /// Otherwise we use [color] to draw the background.
   /// It throws an exception if you provide both [color] and [gradient]
   final Gradient? gradient;
+
+  /// Padding for the background bar chart rod data
+  final EdgeInsets padding;
 
   /// Lerps a [BackgroundBarChartRodData] based on [t] value, check [Tween.lerp].
   static BackgroundBarChartRodData lerp(

@@ -213,10 +213,10 @@ class BarChartPainter extends AxisChartPainter<BarChartData> {
             );
 
             barRRect = RRect.fromLTRBAndCorners(
-              left,
-              top,
-              right,
-              bottom,
+              left - barRod.backDrawRodData.padding.left,
+              top + barRod.backDrawRodData.padding.top,
+              right + barRod.backDrawRodData.padding.right,
+              bottom - barRod.backDrawRodData.padding.bottom,
               topLeft: borderRadius.topLeft,
               topRight: borderRadius.topRight,
               bottomLeft: borderRadius.bottomLeft,
@@ -235,10 +235,10 @@ class BarChartPainter extends AxisChartPainter<BarChartData> {
             );
 
             barRRect = RRect.fromLTRBAndCorners(
-              left,
-              top,
-              right,
-              bottom,
+              left - barRod.backDrawRodData.padding.left,
+              top + barRod.backDrawRodData.padding.top,
+              right + barRod.backDrawRodData.padding.right,
+              bottom - barRod.backDrawRodData.padding.bottom,
               topLeft: borderRadius.topLeft,
               topRight: borderRadius.topRight,
               bottomLeft: borderRadius.bottomLeft,
