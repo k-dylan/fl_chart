@@ -594,6 +594,7 @@ class BackgroundBarChartRodData with EquatableMixin {
         color: Color.lerp(a.color, b.color, t),
         gradient: Gradient.lerp(a.gradient, b.gradient, t),
         show: b.show,
+        padding: EdgeInsets.lerp(a.padding, b.padding, t)!,
       );
 
   /// Used for equality check, see [EquatableMixin].
@@ -604,6 +605,7 @@ class BackgroundBarChartRodData with EquatableMixin {
         toY,
         color,
         gradient,
+        padding,
       ];
 }
 
