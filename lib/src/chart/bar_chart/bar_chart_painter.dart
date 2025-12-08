@@ -197,6 +197,9 @@ class BarChartPainter extends AxisChartPainter<BarChartData> {
 
         RRect barRRect;
 
+        final bgPadding = barRod.backDrawRodData.padding;
+        final bgBorderRadius = barRod.backDrawRodData.borderRadius;
+
         /// Draw [BackgroundBarChartRodData]
         if (barRod.backDrawRodData.show &&
             barRod.backDrawRodData.toY != barRod.backDrawRodData.fromY) {
@@ -213,14 +216,14 @@ class BarChartPainter extends AxisChartPainter<BarChartData> {
             );
 
             barRRect = RRect.fromLTRBAndCorners(
-              left,
-              top,
-              right,
-              bottom,
-              topLeft: borderRadius.topLeft,
-              topRight: borderRadius.topRight,
-              bottomLeft: borderRadius.bottomLeft,
-              bottomRight: borderRadius.bottomRight,
+              left - bgPadding.left,
+              top + bgPadding.top,
+              right + bgPadding.right,
+              bottom - bgPadding.bottom,
+              topLeft: bgBorderRadius?.topLeft ?? Radius.zero,
+              topRight: bgBorderRadius?.topRight ?? Radius.zero,
+              bottomLeft: bgBorderRadius?.bottomLeft ?? Radius.zero,
+              bottomRight: bgBorderRadius?.bottomRight ?? Radius.zero,
             );
           } else {
             // negative
@@ -235,14 +238,14 @@ class BarChartPainter extends AxisChartPainter<BarChartData> {
             );
 
             barRRect = RRect.fromLTRBAndCorners(
-              left,
-              top,
-              right,
-              bottom,
-              topLeft: borderRadius.topLeft,
-              topRight: borderRadius.topRight,
-              bottomLeft: borderRadius.bottomLeft,
-              bottomRight: borderRadius.bottomRight,
+              left - bgPadding.left,
+              top + bgPadding.top,
+              right + bgPadding.right,
+              bottom - bgPadding.bottom,
+              topLeft: bgBorderRadius?.topLeft ?? Radius.zero,
+              topRight: bgBorderRadius?.topRight ?? Radius.zero,
+              bottomLeft: bgBorderRadius?.bottomLeft ?? Radius.zero,
+              bottomRight: bgBorderRadius?.bottomRight ?? Radius.zero,
             );
           }
 

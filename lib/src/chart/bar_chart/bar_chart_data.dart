@@ -552,6 +552,8 @@ class BackgroundBarChartRodData with EquatableMixin {
     bool? show,
     Color? color,
     this.gradient,
+    this.padding = EdgeInsets.zero,
+    this.borderRadius,
   })  : fromY = fromY ?? 0,
         toY = toY ?? 0,
         show = show ?? false,
@@ -560,6 +562,10 @@ class BackgroundBarChartRodData with EquatableMixin {
 
   /// Determines to show or hide this
   final bool show;
+
+  final EdgeInsets padding;
+
+  final BorderRadius? borderRadius;
 
   /// [fromY] is where background starts to show
   final double fromY;
@@ -589,6 +595,7 @@ class BackgroundBarChartRodData with EquatableMixin {
         color: Color.lerp(a.color, b.color, t),
         gradient: Gradient.lerp(a.gradient, b.gradient, t),
         show: b.show,
+        padding: EdgeInsets.lerp(a.padding, b.padding, t)!,
       );
 
   /// Used for equality check, see [EquatableMixin].
@@ -599,6 +606,7 @@ class BackgroundBarChartRodData with EquatableMixin {
         toY,
         color,
         gradient,
+        padding,
       ];
 }
 
