@@ -249,6 +249,7 @@ class LineChartBarData with EquatableMixin {
     this.shadow = const Shadow(color: Colors.transparent),
     this.isStepLineChart = false,
     this.lineChartStepData = const LineChartStepData(),
+    this.getNullSpot,
   })  : color =
             color ?? ((color == null && gradient == null) ? Colors.cyan : null),
         belowBarData = belowBarData ?? BarAreaData(),
@@ -292,6 +293,12 @@ class LineChartBarData with EquatableMixin {
       mostBottomSpot = mostBottom!;
     }
   }
+
+  /// 当要显示的Indicator的Index在[spots]中不存在时，调用此回调函数获取NullSpot
+  ///
+  /// 若未提供此回调函数，且要显示的Indicator的Index在[spots]中不存在时，
+  /// 则不会绘制该Indicator
+  final FlSpot Function(int index)? getNullSpot;
 
   /// This line goes through this spots.
   ///
