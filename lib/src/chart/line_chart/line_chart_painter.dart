@@ -130,14 +130,22 @@ class LineChartPainter extends AxisChartPainter<LineChartData> {
       for (var j = 0; j < barData.showingIndicators.length; j++) {
         final indicatorData = indicatorsData[j];
         final index = barData.showingIndicators[j];
+        FlSpot spot;
         if (index < 0 || index >= barData.spots.length) {
-          continue;
+          spot = FlSpot.nullSpot;
+        } else {
+          spot = barData.spots[index];
         }
-        final spot = barData.spots[index];
 
         if (indicatorData == null) {
           continue;
         }
+        if (spot.isNull()) {
+          if (barData.getNullSpot == null) continue;
+          spot = barData.getNullSpot!(index);
+        }
+        if (spot.isNull()) continue;
+
         lineIndexDrawingInfo.add(
           LineIndexDrawingInfo(barData, i, spot, index, indicatorData),
         );
