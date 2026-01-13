@@ -21,6 +21,11 @@ class _LineChart extends StatelessWidget {
         titlesData: titlesData1,
         borderData: borderData,
         lineBarsData: lineBarsData1,
+        showingTooltipIndicators: [
+          ShowingTooltipIndicators([
+            LineBarSpot(lineBarsData1[0], 0, FlSpot(7, 4)),
+          ])
+        ],
         minX: 0,
         maxX: 14,
         maxY: 4,
@@ -40,7 +45,13 @@ class _LineChart extends StatelessWidget {
       );
 
   LineTouchData get lineTouchData1 => LineTouchData(
-        handleBuiltInTouches: true,
+        handleBuiltInTouches: false,
+        getTouchLineEnd: (LineChartBarData barData, int spotIndex) {
+          return double.infinity;
+        },
+        getTouchLineStart: (LineChartBarData barData, int spotIndex) {
+          return 0;
+        },
         touchTooltipData: LineTouchTooltipData(
           getTooltipColor: (touchedSpot) =>
               Colors.blueGrey.withValues(alpha: 0.8),
@@ -64,8 +75,8 @@ class _LineChart extends StatelessWidget {
 
   List<LineChartBarData> get lineBarsData1 => [
         lineChartBarData1_1,
-        lineChartBarData1_2,
-        lineChartBarData1_3,
+        // lineChartBarData1_2,
+        // lineChartBarData1_3,
       ];
 
   LineTouchData get lineTouchData2 => const LineTouchData(
@@ -191,14 +202,17 @@ class _LineChart extends StatelessWidget {
         isStrokeCapRound: true,
         dotData: const FlDotData(show: false),
         belowBarData: BarAreaData(show: false),
+        showingIndicators: [6],
+        getNullSpot: (index) => FlSpot(index.toDouble(), 10),
         spots: const [
           FlSpot(1, 1),
+          FlSpot(2, 1),
           FlSpot(3, 1.5),
-          FlSpot(5, 1.4),
-          FlSpot(7, 3.4),
-          FlSpot(10, 2),
-          FlSpot(12, 2.2),
-          FlSpot(13, 1.8),
+          FlSpot(4, 1.4),
+          FlSpot(5, 3.4),
+          // FlSpot(10, 2),
+          // FlSpot(12, 2.2),
+          // FlSpot(13, 1.8),
         ],
       );
 
