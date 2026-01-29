@@ -514,9 +514,13 @@ class BarChartPainter extends AxisChartPainter<BarChartData> {
       return;
     }
 
-    final tooltipTop = drawTooltipOnTop
+    var tooltipTop = drawTooltipOnTop
         ? barTopY - tooltipHeight - tooltipData.tooltipMargin
         : barBottomY + tooltipData.tooltipMargin;
+
+    if (tooltipData.direction == TooltipDirection.fixed) {
+      tooltipTop = tooltipData.tooltipMargin;
+    }
 
     final tooltipLeft = getTooltipLeft(
       barToYPixel.dx,

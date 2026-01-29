@@ -713,6 +713,9 @@ enum TooltipDirection {
 
   /// Tooltip always shows on bottom.
   bottom,
+
+  /// 固定位置 当设置此值时，高度会固定为 [touchTooltipData.tooltipMargin]
+  fixed,
 }
 
 /// Holds representation data for showing tooltip popup on top of rods.
