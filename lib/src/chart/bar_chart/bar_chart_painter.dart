@@ -724,10 +724,17 @@ class BarChartPainter extends AxisChartPainter<BarChartData> {
         Radius.zero,
       );
     }
+    final strokeWidth = min(stackItem.borderSide.width, barThickSize / 2);
     _barStrokePaint
       ..color = stackItem.borderSide.color
-      ..strokeWidth = min(stackItem.borderSide.width, barThickSize / 2);
-    canvasWrapper.drawRRect(strokeBarRect, _barStrokePaint);
+      ..strokeWidth = strokeWidth;
+
+    final innerRect = strokeBarRect.deflate(strokeWidth / 2);
+    final borderPath = Path()..addRRect(innerRect);
+    canvasWrapper.drawPath(
+      borderPath.toDashedPath(stackItem.borderDashArray),
+      _barStrokePaint,
+    );
   }
 
   /// Makes a [BarTouchedSpot] based on the provided [localPosition]

@@ -493,6 +493,7 @@ class BarChartRodStackItem with EquatableMixin {
     this.label,
     this.labelStyle,
     this.borderSide = Utils.defaultBorderSide,
+    this.borderDashArray,
   }) : assert(
           color != null || gradient != null,
           'You must provide either a color or gradient',
@@ -515,6 +516,11 @@ class BarChartRodStackItem with EquatableMixin {
   /// Renders border stroke for a Stacked Chart section
   final BorderSide borderSide;
 
+  /// If you want to have a dashed border for the stack item, set this value.
+  /// The array specifies the dash width and gap width alternately.
+  /// For example, [4, 2] means 4 pixels dash followed by 2 pixels gap.
+  final List<int>? borderDashArray;
+
   /// Copies current [BarChartRodStackItem] to a new [BarChartRodStackItem],
   /// and replaces provided values.
   BarChartRodStackItem copyWith({
@@ -525,6 +531,7 @@ class BarChartRodStackItem with EquatableMixin {
     String? label,
     TextStyle? labelStyle,
     BorderSide? borderSide,
+    List<int>? borderDashArray,
   }) =>
       BarChartRodStackItem(
         fromY ?? this.fromY,
@@ -534,6 +541,7 @@ class BarChartRodStackItem with EquatableMixin {
         label: label ?? this.label,
         labelStyle: labelStyle ?? this.labelStyle,
         borderSide: borderSide ?? this.borderSide,
+        borderDashArray: borderDashArray ?? this.borderDashArray,
       );
 
   /// Lerps a [BarChartRodStackItem] based on [t] value, check [Tween.lerp].
@@ -550,12 +558,13 @@ class BarChartRodStackItem with EquatableMixin {
         label: b.label,
         labelStyle: b.labelStyle,
         borderSide: BorderSide.lerp(a.borderSide, b.borderSide, t),
+        borderDashArray: lerpIntList(a.borderDashArray, b.borderDashArray, t),
       );
 
   /// Used for equality check, see [EquatableMixin].
   @override
   List<Object?> get props =>
-      [fromY, toY, color, gradient, label, labelStyle, borderSide];
+      [fromY, toY, color, gradient, label, labelStyle, borderSide, borderDashArray];
 }
 
 /// Holds values to draw a rod in rear of the main rod.
